@@ -50,15 +50,11 @@ export class DrizzleAdapter<
 
     async loadPolicy(model: Model): Promise<void> {
         let lines: TCasinTable[]
-        try {
-            // @ts-expect-error
-            lines = await this.#db.query.casbinTable.findMany()
+        // @ts-expect-error
+        lines = await this.#db.query.casbinTable.findMany()
 
-            for (const line of lines) {
-                this.#loadPolicyLine(line, model)
-            }
-        } catch (error) {
-            throw new Error("table must named 'casbinTable'")
+        for (const line of lines) {
+            this.#loadPolicyLine(line, model)
         }
     }
 
